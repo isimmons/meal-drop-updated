@@ -1,6 +1,16 @@
+import styled from "styled-components";
+
+import { Body } from "../typography";
+
 type Props = {
   rating?: number;
 };
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
 
 const getReview = (rating?: number) => {
   if (!rating) {
@@ -20,4 +30,12 @@ const getReview = (rating?: number) => {
   return `★ ${rating.toFixed(1)} ${reviewText}`;
 };
 
-export const Review = ({ rating }: Props) => <div>{getReview(rating)}</div>;
+export const Review = ({ rating }: Props) => {
+  return (
+    <Container>
+      <Body type="span" size="S" className="review-text">
+        {getReview(rating)}
+      </Body>
+    </Container>
+  );
+};
