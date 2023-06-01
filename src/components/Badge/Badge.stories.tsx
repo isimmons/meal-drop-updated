@@ -9,6 +9,12 @@ const meta = {
   args: {
     text: "Comfort food",
   },
+  parameters: {
+    design: {
+      type: "figspec",
+      url: "https://www.figma.com/file/3Q1HTCalD0lJnNvcMoEw1x/Mealdrop?type=design&node-id=1906-3469&t=xzhd644zrRNFAbUu-4",
+    },
+  },
 } satisfies Meta<typeof Badge>;
 
 export default meta;
