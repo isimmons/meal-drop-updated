@@ -1,9 +1,9 @@
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import styled, { css, useTheme } from 'styled-components';
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import styled, { css, useTheme } from "styled-components";
 
-import { Body, Heading } from '~/components/typography';
-import { Badge } from '~/components/Badge';
-import { Review } from '~/components/Review';
+import { Body, Heading } from "~/components/typography";
+import { Badge } from "~/components/Badge";
+import { Review } from "~/components/Review";
 
 type Props = {
   name: string;
@@ -93,7 +93,7 @@ const RestaurantImage = styled.img<{ $isClosed: boolean }>`
   width: 100%;
   border-radius: 8px 8px 0px 0px;
   object-fit: cover;
-  filter: ${({ $isClosed }) => ($isClosed ? 'grayscale(1)' : 'none')};
+  filter: ${({ $isClosed }) => ($isClosed ? "grayscale(1)" : "none")};
 `;
 const Description = styled(Body)`
   margin-top: 8px;
@@ -134,7 +134,7 @@ export const RestaurantCardSkeleton = () => {
         <Skeleton
           height={200}
           width="100%"
-          style={{ borderRadius: '4px 4px 0 0' }}
+          style={{ borderRadius: "4px 4px 0 0" }}
         />
         <StyledContent>
           <StyledHeading level={2}>
