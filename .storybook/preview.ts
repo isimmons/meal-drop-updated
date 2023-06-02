@@ -4,6 +4,8 @@ import { viewports as breakpoints } from "../src/styles/breakpoints";
 
 import { globalDecorators } from "./decorators";
 
+import type { Preview } from "@storybook/react";
+
 // Create custom viewports using widths defined in design tokens
 const breakpointViewports = Object.keys(breakpoints).reduce((acc, key) => {
   acc[`breakpoint${key}`] = {
@@ -18,33 +20,37 @@ const breakpointViewports = Object.keys(breakpoints).reduce((acc, key) => {
   return acc;
 }, {} as typeof INITIAL_VIEWPORTS);
 
-export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-  viewport: {
-    viewports: {
-      ...breakpointViewports,
-      ...INITIAL_VIEWPORTS,
+const preview: Preview = {
+  decorators: globalDecorators,
+
+  parameters: {
+    actions: { argTypesRegex: "^on[A-Z].*" },
+    viewport: {
+      viewports: {
+        ...breakpointViewports,
+        ...INITIAL_VIEWPORTS,
+      },
+    },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/,
+      },
     },
   },
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
+
+  globalTypes: {
+    theme: {
+      name: "Theme",
+      description: "Global theme for components",
+      defaultValue: "light",
+      toolbar: {
+        icon: "circlehollow",
+        items: ["light", "dark"],
+        dynamicTitle: true,
+      },
     },
   },
 };
 
-export const decorators = globalDecorators;
-
-export const globalTypes = {
-  theme: {
-    name: "Theme",
-    description: "Global theme for components",
-    defaultValue: "light",
-    toolbar: {
-      icon: "circlehollow",
-      items: ["light", "dark"],
-      dynamicTitle: true,
-    },
-  },
-};
+export default preview;
