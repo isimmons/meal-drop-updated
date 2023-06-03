@@ -2,10 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Badge } from "./Badge";
 
-const meta = {
+const meta: Meta<typeof Badge> = {
   title: "Components/Badge",
   component: Badge,
-  tags: ["autodocs"],
   args: {
     text: "Comfort food",
   },
@@ -15,7 +14,7 @@ const meta = {
       url: "https://www.figma.com/file/3Q1HTCalD0lJnNvcMoEw1x/Mealdrop?type=design&node-id=1906-3469&t=xzhd644zrRNFAbUu-4",
     },
   },
-} satisfies Meta<typeof Badge>;
+};
 
 export default meta;
 

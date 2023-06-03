@@ -1,4 +1,6 @@
-module.exports = {
+import type { StorybookConfig } from "@storybook/react-vite";
+
+const config: StorybookConfig = {
   stories: [
     "../src/docs/Introduction.stories.mdx",
     "../src/docs/*.stories.mdx",
@@ -15,6 +17,8 @@ module.exports = {
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    autodocs: true,
   },
 };
+
+export default config;

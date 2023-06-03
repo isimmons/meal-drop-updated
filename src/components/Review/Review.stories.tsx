@@ -2,10 +2,9 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Review } from "./Review";
 
-const meta = {
+const meta: Meta<typeof Review> = {
   title: "Components/Review",
   component: Review,
-  tags: ["autodocs"],
   argTypes: {
     rating: {
       control: {
@@ -16,7 +15,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Review>;
+};
 
 export default meta;
 
