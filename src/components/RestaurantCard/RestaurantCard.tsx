@@ -5,6 +5,8 @@ import { Body, Heading } from "~/components/typography";
 import { Badge } from "~/components/Badge";
 import { Review } from "~/components/Review";
 
+import "react-loading-skeleton/dist/skeleton.css";
+
 type Props = {
   name: string;
   rating?: number;

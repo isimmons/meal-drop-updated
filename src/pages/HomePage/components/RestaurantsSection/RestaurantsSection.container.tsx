@@ -1,16 +1,16 @@
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import Carousel from 'react-multi-carousel';
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import Carousel from "react-multi-carousel";
 
-import { useFetchRestaurants } from '~/api/hooks';
-import { IconButton } from '~/components/IconButton';
-import { PageSection } from '~/components/PageSection';
+import { useFetchRestaurants } from "~/api/hooks";
+import { IconButton } from "~/components/IconButton";
+import { PageSection } from "~/components/PageSection";
 import {
   RestaurantCard,
   RestaurantCardSkeleton,
-} from '~/components/RestaurantCard';
+} from "~/components/RestaurantCard";
 
-import type { Restaurant } from '~/@types';
+import type { Restaurant } from "~/@types";
 
 const PreviousButton = styled(IconButton)`
   position: absolute;
@@ -29,7 +29,7 @@ type RestaurantsSectionProps = {
 type RestaurantsSectionComponentProps = {
   title: string;
   restaurants: Restaurant[];
-  isLoading?: boolean;
+  isLoading: boolean;
   onRestaurantClick: (id: string) => void;
 };
 
@@ -38,7 +38,7 @@ export const RestaurantsSectionComponent = ({
   title,
   restaurants,
   onRestaurantClick,
-  isLoading,
+  isLoading = false,
 }: RestaurantsSectionComponentProps) => {
   const isMobile = /Mobi/i.test(window.navigator.userAgent);
 
@@ -67,7 +67,7 @@ export const RestaurantsSectionComponent = ({
           },
         }}
         containerClass="carousel-container"
-        removeArrowOnDeviceType={['tablet', 'mobile']}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
         itemClass="carousel-item"
       >
         {isLoading
@@ -96,7 +96,7 @@ export const RestaurantsSection = ({ title }: RestaurantsSectionProps) => {
     <RestaurantsSectionComponent
       title={title}
       restaurants={restaurants}
-      isLoading={status === 'loading'}
+      isLoading={status === "loading"}
       onRestaurantClick={(id: string) => navigate(`/restaurants/${id}`)}
     />
   );
