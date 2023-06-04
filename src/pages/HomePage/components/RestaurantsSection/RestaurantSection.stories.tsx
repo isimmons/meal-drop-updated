@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { RestaurantsSectionComponent as RestaurantsSection } from "./RestaurantsSection.container";
-import { restaurants } from "~/stub/restaurants";
+import { RestaurantsSection } from "./RestaurantsSection";
 
 const meta: Meta<typeof RestaurantsSection> = {
   title: "Pages/HomePage/Components/RestaurantsSection",
@@ -21,25 +20,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  args: {
-    restaurants,
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    isLoading: true,
-  },
-  // exclude unnecessary controls. This is important especially for the isLoading
-  // control because if we toggle the control in storybook, it will cause a fatal error
-  // due to the way we are using the RestaurantSectionComponent wrapper in this
-  // story. See some o dem der docs n such
-  // https://storybook.js.org/docs/react/essentials/controls#disable-controls-for-specific-properties
-  parameters: {
-    controls: {
-      // exclude: ["isLoading", "restaurants", "onRestaurantClick"],
-      include: "title",
-    },
-  },
-};
+export const Default: Story = {};
