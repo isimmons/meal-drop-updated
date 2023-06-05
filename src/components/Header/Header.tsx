@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
-import useDarkMode from '@fisch0920/use-dark-mode';
+import styled, { css } from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+import useDarkMode from "@fisch0920/use-dark-mode";
 
-import { useAppDispatch, useAppSelector } from '../../app-state';
+import { useAppDispatch, useAppSelector } from "~/app-state";
 import {
   CartItem,
   saveItemAction,
@@ -10,13 +10,13 @@ import {
   selectCartTotal,
   selectCartVisibility,
   toggleVisibilityAction,
-} from '~/app-state/cart';
-import { breakpoints } from '~/styles/breakpoints';
-import { ShoppingCartMenu } from '~/components/ShoppingCartMenu';
-import { Button } from '~/components/Button';
-import { toEuro } from '~/helpers';
-import { Body } from '~/components/typography/Body';
-import { Logo } from '~/components/Logo';
+} from "~/app-state/cart";
+import { breakpoints } from "~/styles/breakpoints";
+import { ShoppingCartMenu } from "~/components/ShoppingCartMenu";
+import { Button } from "~/components/Button";
+import { toEuro } from "~/helpers";
+import { Body } from "~/components/typography/Body";
+import { Logo } from "~/components/Logo";
 
 export const HeaderContainer = styled.div<{ sticky: boolean }>(
   ({ sticky, theme: { color } }) => css`
@@ -37,7 +37,7 @@ export const HeaderContainer = styled.div<{ sticky: boolean }>(
     }
 
     @media ${breakpoints.M} {
-      position: ${sticky ? 'sticky' : 'relative'};
+      position: ${sticky ? "sticky" : "relative"};
       height: 72px;
     }
   `
@@ -105,8 +105,8 @@ const ThemeToggle = () => {
     <Button
       round
       clear
-      aria-label={`turn on ${darkMode.value ? 'light' : 'dark'} mode`}
-      icon={darkMode.value ? 'moon' : 'sun'}
+      aria-label={`turn on ${darkMode.value ? "light" : "dark"} mode`}
+      icon={darkMode.value ? "moon" : "sun"}
       onClick={darkMode.toggle}
     />
   );
@@ -120,7 +120,7 @@ type Props = {
   sticky?: boolean;
   toggleCartVisibility?: () => void;
   goToCheckout?: () => void;
-  saveItem?: (item: CartItem) => void;
+  saveItem: (item: CartItem) => void;
 };
 
 export const HeaderComponent = ({
@@ -135,9 +135,7 @@ export const HeaderComponent = ({
   goToCheckout = () => {
     return;
   },
-  saveItem = () => {
-    return;
-  },
+  saveItem,
 }: Props) => (
   <HeaderContainer data-testid="header" sticky={sticky}>
     <LogoContainer to="/" aria-label="go to home page">
@@ -192,7 +190,7 @@ export const Header = ({ sticky }: { sticky?: boolean }) => {
 
   const goToCheckout = () => {
     toggleCartVisibility();
-    navigate('/checkout');
+    navigate("/checkout");
   };
 
   return (

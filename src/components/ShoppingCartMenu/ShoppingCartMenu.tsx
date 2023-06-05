@@ -1,13 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { CartItem } from '~/app-state/cart';
-import { toEuro } from '~/helpers';
-import { Button } from '~/components/Button';
-import { Select } from '~/components/forms';
-import { Sidebar } from '~/components/Sidebar';
-import { Body } from '~/components/typography';
-
-import { ChangeEvent } from 'react';
+import { CartItem } from "~/app-state/cart";
+import { toEuro } from "~/helpers";
+import { Button } from "~/components/Button";
+import { Select } from "~/components/forms/Select";
+import { Sidebar } from "~/components/Sidebar";
+import { Body } from "~/components/typography";
 
 const FooterContainer = styled.div`
   display: flex;
@@ -22,12 +20,7 @@ const TotalSection = styled.div`
   margin-bottom: 24px;
 `;
 
-type FooterProps = {
-  totalPrice: number;
-  onClick?: () => void;
-};
-
-const Footer = ({ onClick, totalPrice }: FooterProps) => (
+const Footer = ({ onClick, totalPrice }: any) => (
   <FooterContainer>
     <TotalSection>
       <Body type="span">Total</Body>
@@ -52,36 +45,22 @@ const MenuItemContainer = styled.div`
   }
 `;
 
-type ShoppingCartMenuItemProps = {
-  item: CartItem;
-  onChange: (data: number) => void;
-};
-
-const ShoppingCartMenuItem = ({
-  item,
-  onChange,
-}: ShoppingCartMenuItemProps) => {
-  const handleChange = () => (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(Number(event.target.value));
-  };
-
-  return (
-    <MenuItemContainer>
-      <div>
-        <Body type="span" fontWeight="medium">
-          {item.name}
-        </Body>
-        <Body>{item.description}</Body>
-        <Body>{toEuro(item.price * item.quantity)}</Body>
-      </div>
-      <Select
-        value={item.quantity.toString()}
-        onChange={handleChange}
-        options={[...Array(11).keys()].map((n) => n.toString())}
-      />
-    </MenuItemContainer>
-  );
-};
+const ShoppingCartMenuItem = ({ item, onChange }: any) => (
+  <MenuItemContainer>
+    <div>
+      <Body type="span" fontWeight="medium">
+        {item.name}
+      </Body>
+      <Body>{item.description}</Body>
+      <Body>{toEuro(item.price * item.quantity)}</Body>
+    </div>
+    <Select
+      value={item.quantity}
+      onChange={onChange}
+      options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+    />
+  </MenuItemContainer>
+);
 
 type ShoppingCartMenuProps = {
   isOpen: boolean;
@@ -106,7 +85,7 @@ export const ShoppingCartMenu = ({
     isOpen={isOpen}
     footer={<Footer onClick={onGoToCheckoutClick} totalPrice={totalPrice} />}
   >
-    <div style={{ display: 'grid', gap: '24px' }}>
+    <div style={{ display: "grid", gap: "24px" }}>
       {cartItems.map((item) => (
         <ShoppingCartMenuItem
           key={item.id}

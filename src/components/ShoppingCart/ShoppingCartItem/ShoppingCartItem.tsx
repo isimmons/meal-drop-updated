@@ -1,12 +1,12 @@
-import { CartItem } from '~/app-state/cart';
-import { toEuro } from '~/helpers';
+import { CartItem } from "~/app-state/cart";
+import { toEuro } from "~/helpers";
 
 import {
   CartItemContainer,
   Quantity,
   Name,
   Price,
-} from './ShoppingCartItem.styles';
+} from "./ShoppingCartItem.styles";
 
 type Props = {
   item: CartItem;
