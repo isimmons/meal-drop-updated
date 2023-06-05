@@ -3,6 +3,7 @@ import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import { viewports as breakpoints } from "../src/styles/breakpoints";
 
 import { globalDecorators } from "./decorators";
+import { globalLoaders } from "./loaders";
 
 import type { Preview } from "@storybook/react";
 
@@ -22,6 +23,7 @@ const breakpointViewports = Object.keys(breakpoints).reduce((acc, key) => {
 
 const preview: Preview = {
   decorators: globalDecorators,
+  loaders: globalLoaders,
 
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },

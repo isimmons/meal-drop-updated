@@ -1,6 +1,7 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
+  staticDirs: ["../public"],
   stories: [
     "../src/docs/Introduction.stories.mdx",
     "../src/docs/*.stories.mdx",
@@ -16,9 +17,9 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  docs: {
-    autodocs: true,
-  },
+  // docs: {
+  //   autodocs: true,
+  // },
 };
 
 export default config;

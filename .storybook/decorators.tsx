@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+
 import { Decorator } from "@storybook/react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../src/styles/GlobalStyle";

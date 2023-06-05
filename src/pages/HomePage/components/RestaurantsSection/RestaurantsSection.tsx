@@ -24,9 +24,14 @@ const NextButton = styled(IconButton)`
 
 type RestaurantsSectionProps = {
   title: string;
+  isLoading?: boolean;
 };
 
-export const RestaurantsSection = ({ title }: RestaurantsSectionProps) => {
+export const RestaurantsSection = ({
+  title,
+  isLoading = false,
+}: RestaurantsSectionProps) => {
+  console.log("from the component");
   const navigate = useNavigate();
 
   const { restaurants, status } = useFetchRestaurants();
@@ -60,7 +65,7 @@ export const RestaurantsSection = ({ title }: RestaurantsSectionProps) => {
         removeArrowOnDeviceType={["tablet", "mobile"]}
         itemClass="carousel-item"
       >
-        {status === "loading"
+        {status === "loading" || isLoading
           ? Array.from(Array(3)).map((_, index) => (
               <RestaurantCardSkeleton key={index} />
             ))
