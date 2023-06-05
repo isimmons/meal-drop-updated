@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Routes, Route } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider as StoreProvider } from "react-redux";
 
@@ -9,11 +9,22 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../src/styles/GlobalStyle";
 import { lightTheme, darkTheme } from "../src/styles/theme";
 
-const withRouter: Decorator = (StoryFn, context) => {
+const withRouter: Decorator = (StoryFn, { parameters: { deepLink } }) => {
+  if (!deepLink) {
+    return (
+      <BrowserRouter>
+        <StoryFn />
+      </BrowserRouter>
+    );
+  }
+
+  const { path, route } = deepLink;
   return (
-    <BrowserRouter>
-      <StoryFn />
-    </BrowserRouter>
+    <MemoryRouter initialEntries={[encodeURI(route)]}>
+      <Routes>
+        <Route path={path} element={<StoryFn />} />
+      </Routes>
+    </MemoryRouter>
   );
 };
 
