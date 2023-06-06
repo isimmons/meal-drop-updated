@@ -1,21 +1,21 @@
-import { Header, HeaderComponent } from '~/components/Header/Header';
-import { Footer } from '~/components/Footer/Footer';
+import { Header, HeaderComponent } from "~/components/Header/Header";
+import { Footer } from "~/components/Footer/Footer";
 
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.div`
   min-height: calc(100vh - 200px);
 `;
 
 type Props = {
-  type?: 'default' | 'sticky-header' | 'basic';
-  children: ReactNode;
+  type?: "default" | "sticky-header" | "basic";
+  children: ReactNode | ReactNode[];
 };
 
-export const PageTemplate = ({ type = 'default', children }: Props) => {
-  if (type === 'basic') {
+export const PageTemplate = ({ type = "default", children }: Props) => {
+  if (type === "basic") {
     return (
       <>
         <HeaderComponent logoOnly />
@@ -24,7 +24,7 @@ export const PageTemplate = ({ type = 'default', children }: Props) => {
     );
   }
 
-  if (type === 'sticky-header') {
+  if (type === "sticky-header") {
     return (
       <>
         <Header sticky />

@@ -1,6 +1,6 @@
-import { createSlice, CaseReducer, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, CaseReducer, PayloadAction } from "@reduxjs/toolkit";
 
-import { ShopItem } from '~/@types';
+import { ShopItem } from "~/@types";
 export interface CartItem extends ShopItem {
   quantity: number;
 }
@@ -47,6 +47,7 @@ const saveItem: CaseReducer<CartState, PayloadAction<CartItem>> = (
   state,
   action
 ) => {
+  console.log("payload: ", action.payload);
   const existingCartItem = state.items.find(
     (item) => item.id === action.payload.id
   ) as CartItem;
@@ -64,7 +65,7 @@ const initialState: CartState = {
 };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     toggleVisibilityAction: toggleVisibility,

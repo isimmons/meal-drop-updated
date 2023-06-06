@@ -120,7 +120,7 @@ type Props = {
   sticky?: boolean;
   toggleCartVisibility?: () => void;
   goToCheckout?: () => void;
-  saveItem: (item: CartItem) => void;
+  saveItem?: (item: CartItem) => void;
 };
 
 export const HeaderComponent = ({
@@ -132,10 +132,10 @@ export const HeaderComponent = ({
   toggleCartVisibility = () => {
     return;
   },
-  goToCheckout = () => {
+  goToCheckout,
+  saveItem = () => {
     return;
   },
-  saveItem,
 }: Props) => (
   <HeaderContainer data-testid="header" sticky={sticky}>
     <LogoContainer to="/" aria-label="go to home page">

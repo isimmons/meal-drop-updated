@@ -45,22 +45,24 @@ const MenuItemContainer = styled.div`
   }
 `;
 
-const ShoppingCartMenuItem = ({ item, onChange }: any) => (
-  <MenuItemContainer>
-    <div>
-      <Body type="span" fontWeight="medium">
-        {item.name}
-      </Body>
-      <Body>{item.description}</Body>
-      <Body>{toEuro(item.price * item.quantity)}</Body>
-    </div>
-    <Select
-      value={item.quantity}
-      onChange={onChange}
-      options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
-    />
-  </MenuItemContainer>
-);
+const ShoppingCartMenuItem = ({ item, onChange }: any) => {
+  return (
+    <MenuItemContainer>
+      <div>
+        <Body type="span" fontWeight="medium">
+          {item.name}
+        </Body>
+        <Body>{item.description}</Body>
+        <Body>{toEuro(item.price * item.quantity)}</Body>
+      </div>
+      <Select
+        value={item.quantity}
+        onChange={onChange}
+        options={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+      />
+    </MenuItemContainer>
+  );
+};
 
 type ShoppingCartMenuProps = {
   isOpen: boolean;
@@ -68,7 +70,7 @@ type ShoppingCartMenuProps = {
   onClose: () => void;
   cartItems: CartItem[];
   onGoToCheckoutClick?: () => void;
-  onItemChange: (item: any) => void;
+  onItemChange: (item: CartItem) => void;
 };
 
 export const ShoppingCartMenu = ({
