@@ -1,26 +1,14 @@
 # Meal Drop
 
-This is phase 1 of the meal-drop project from Yann Braga's course "Storybook for Building React Apps"
+This is an exteme updated version of Yahn Bragas Meal Drop application from his course on newline.
 
-I took the beginning project from branch 02 of the project repo and converted it to
-a vite/react app with all packages @latest as of May 29, 2023.
+I've updated everything (I mean everything) and fixed breaking changes. I still have a ways to go to get it perfect. Currently I can run npm run dev and npm run storybook and everything works.
 
-It took the better part of a day to get things working and to figure out how things are working. Not bad I think.
+But I can not build due to a commonjs--resolver error so it is not production ready.
 
-The important thing is, both the site (in dev mode) and storybook are working correctly and build is completing with no errors.
+One other thing not working correctly is the restaurant section story with msw for loading state.
+For the sake of showing the "Loading" story I can pass a isLoading arg and forget msw but I want to figure this out.
 
-## Things I'm working on or have done to this point
+I've gotten multiple stories with different msw handlers working in a test project but for some reason they don't work in this app. I'm thinking of also trying to mock the hook that fetches restaurants since the hook it's self is not what is under test here. Anyway, more on that later.
 
-- get rid of enum type? Not sure, it's not hurting anything at the moment
-- type Props belongs strictly to the component. Keep short if not exporting
-  I renamed severl component props to just 'Props' but I'm having second thoughts
-- get rid of \* imports/exports (be explicit)
-  I believe I should be explicit about what I am exporting
-- Figure out types and get rid of explicit anys
-  I dont want to see 'any' in this code. But not sure what type some of them are yet
-- implement alternative to use-dark-mode (outdated, not maintained)
-  I temporarily replaced with @fisch0920/use-dark-mode
-- implement multi step form (cant use react-hooks-helper due to dependency issues)
-  Temporarily made it work by copy js files along with @types d.ts file into src/hooks/rhh
-  and import from there.
-- declare some basic module types for images (both in .storybook and in my @types dirctories)
+Uploading this to github now so I can link to it for trying to get some help with the build error.
