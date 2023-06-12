@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { rest } from "msw";
 import { BASE_URL } from "~/api";
-import { restaurants } from "~/stub/restaurants";
-
 import { RestaurantsSection } from "./RestaurantsSection";
+
+import { restaurants } from "~/stub/restaurants";
 
 const meta: Meta<typeof RestaurantsSection> = {
   title: "Pages/HomePage/Components/RestaurantsSection",
@@ -29,6 +29,17 @@ export const Default: Story = {
     msw: {
       handlers: [
         rest.get(BASE_URL, (_req, res, ctx) => res(ctx.json(restaurants))),
+      ],
+    },
+  },
+};
+
+export const Loading: Story = {
+  name: "Loading Story",
+  parameters: {
+    msw: {
+      handlers: [
+        rest.get(BASE_URL, (_req, res, ctx) => res(ctx.delay("infinite"))),
       ],
     },
   },

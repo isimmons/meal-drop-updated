@@ -1,41 +1,41 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from "styled-components";
 
-import { breakpoints } from '../../styles/breakpoints'
-import { Body } from '../typography'
+import { breakpoints } from "../../styles/breakpoints";
+import { Body } from "../typography";
 
 export type CategoryProps = {
-  id?: string
-  title: string
-  photoUrl: string
-  round?: boolean
-}
+  id?: string;
+  title: string;
+  photoUrl: string;
+  round?: boolean;
+};
 
-const Container = styled.figure<{ round: boolean }>(
-  ({ round, theme: { color, borderRadius } }) => css`
+const Container = styled.figure<{ styled: { round: boolean } }>(
+  ({ styled, theme: { color, borderRadius } }) => css`
     display: flex;
     cursor: pointer;
     position: relative;
-    flex-direction: ${round ? 'column' : 'row'};
-    align-items: ${round ? 'center' : 'start'};
+    flex-direction: ${styled.round ? "column" : "row"};
+    align-items: ${styled.round ? "center" : "start"};
     border-radius: ${borderRadius.s};
-    background: ${round ? color.cardBackground : 'transparent'};
+    background: ${styled.round ? color.cardBackground : "transparent"};
     height: 100%;
     width: 100%;
     min-width: 50px;
-    max-width: ${round ? '200px' : 'auto'};
-    max-height: ${round ? '200px' : '309px'};
+    max-width: ${styled.round ? "200px" : "auto"};
+    max-height: ${styled.round ? "200px" : "309px"};
     margin: 0;
-    padding: ${round ? '1.5rem 2rem' : '0'};
+    padding: ${styled.round ? "1.5rem 2rem" : "0"};
 
     &:hover {
       opacity: 0.9;
     }
 
     @media ${breakpoints.M} {
-      padding: ${round ? '1.5rem 0' : '0'};
+      padding: ${styled.round ? "1.5rem 0" : "0"};
     }
   `
-)
+);
 
 const Image = styled.img(
   ({ theme: { borderRadius } }) => css`
@@ -48,7 +48,7 @@ const Image = styled.img(
     min-height: 50px;
     max-height: 300px;
   `
-)
+);
 
 const RoundImage = styled(Image)(
   ({ theme: { borderRadius } }) => css`
@@ -65,7 +65,7 @@ const RoundImage = styled(Image)(
       min-height: 6.5rem;
     }
   `
-)
+);
 
 const FloatingTitle = styled.figcaption(
   ({ theme: { color, borderRadius } }) => css`
@@ -80,11 +80,11 @@ const FloatingTitle = styled.figcaption(
       color: ${color.white};
     }
   `
-)
+);
 
 const Title = styled.figcaption`
   padding-top: 1rem;
-`
+`;
 
 const Rounded = ({ title, photoUrl: url }: CategoryProps) => (
   <>
@@ -93,7 +93,7 @@ const Rounded = ({ title, photoUrl: url }: CategoryProps) => (
       <Body type="span">{title}</Body>
     </Title>
   </>
-)
+);
 
 const Squared = ({ title, photoUrl: url }: CategoryProps) => (
   <>
@@ -104,16 +104,16 @@ const Squared = ({ title, photoUrl: url }: CategoryProps) => (
       </Body>
     </FloatingTitle>
   </>
-)
+);
 
 export const Category = ({ photoUrl, title, round = false }: CategoryProps) => {
   return (
-    <Container round={round} data-testid={title}>
+    <Container styled={{ round }} data-testid={title}>
       {round ? (
         <Rounded photoUrl={photoUrl} title={title} />
       ) : (
         <Squared photoUrl={photoUrl} title={title} />
       )}
     </Container>
-  )
-}
+  );
+};

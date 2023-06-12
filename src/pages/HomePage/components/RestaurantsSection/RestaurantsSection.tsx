@@ -22,6 +22,11 @@ const NextButton = styled(IconButton)`
   right: 0;
 `;
 
+const RightArrowFix = (arrowProps: any) => {
+  const { carouselState, rtl, ...restArrowProps } = arrowProps;
+  return <NextButton {...restArrowProps} />;
+};
+
 type RestaurantsSectionProps = {
   title: string;
   isLoading?: boolean;
@@ -31,10 +36,9 @@ export const RestaurantsSection = ({
   title,
   isLoading = false,
 }: RestaurantsSectionProps) => {
-  console.log("from the component");
   const navigate = useNavigate();
 
-  const { restaurants, status } = useFetchRestaurants();
+  const { restaurants = [], status } = useFetchRestaurants();
 
   const isMobile = /Mobi/i.test(window.navigator.userAgent);
   return (
@@ -43,7 +47,7 @@ export const RestaurantsSection = ({
         draggable={isMobile}
         partialVisible={isMobile}
         customLeftArrow={<PreviousButton name="arrow-left" />}
-        customRightArrow={<NextButton name="arrow-right" />}
+        customRightArrow={<RightArrowFix name="arrow-right" />}
         responsive={{
           desktop: {
             breakpoint: { max: 5000, min: 1024 },

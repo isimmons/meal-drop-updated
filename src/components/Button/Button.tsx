@@ -1,42 +1,43 @@
-import styled, { css, useTheme } from 'styled-components';
+import styled, { css, useTheme } from "styled-components";
 
-import { breakpoints } from '~/styles/breakpoints';
-import { Icon } from '~/components/Icon';
+import { breakpoints } from "~/styles/breakpoints";
+import { Icon } from "~/components/Icon";
+// import { DefaultTheme } from "styled-components/dist/types";
 
 const Spacer = styled.span`
   padding-left: 1rem;
 `;
 
 const StyledButton = styled.button<{
-  clear: boolean;
-  large: boolean;
-  withIcon: boolean;
-  round: boolean;
+  styled: {
+    clear: boolean;
+    large: boolean;
+    withIcon: boolean;
+    round: boolean;
+  };
 }>(
-  ({
-    clear,
-    large,
-    round,
-    withIcon,
-    theme: { color, boxShadow, borderRadius },
-  }) => css`
+  ({ styled, theme: { color, boxShadow, borderRadius } }) => css`
     outline: none;
     border: 0;
-    font-family: 'Hind';
-    border-radius: ${round ? borderRadius.xl : borderRadius.xs};
+    font-family: "Hind";
+    border-radius: ${styled.round ? borderRadius.xl : borderRadius.xs};
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: ${withIcon ? '0.7rem' : large ? '1.125rem 1rem' : '0.875rem 1rem'};
-    color: ${clear ? color.primaryText : color.buttonText};
+    padding: ${styled.withIcon
+      ? "0.7rem"
+      : styled.large
+      ? "1.125rem 1rem"
+      : "0.875rem 1rem"};
+    color: ${styled.clear ? color.primaryText : color.buttonText};
 
     transition: box-shadow 150ms ease-in;
     z-index: 1;
-    background-color: ${clear ? color.buttonClear : color.buttonPrimary};
+    background-color: ${styled.clear ? color.buttonClear : color.buttonPrimary};
 
     &:hover {
       cursor: pointer;
-      background-color: ${clear
+      background-color: ${styled.clear
         ? color.buttonClearHover
         : color.buttonPrimaryHover};
     }
@@ -46,16 +47,18 @@ const StyledButton = styled.button<{
     }
 
     &:disabled {
-      background-color: ${clear ? color.buttonClear : color.buttonPrimary};
+      background-color: ${styled.clear
+        ? color.buttonClear
+        : color.buttonPrimary};
       opacity: 0.4;
     }
 
     @media ${breakpoints.M} {
-      padding: ${withIcon
-        ? '1rem'
-        : large
-        ? '1.125rem 1.5rem'
-        : '0.875rem 1.5rem'};
+      padding: ${styled.withIcon
+        ? "1rem"
+        : styled.large
+        ? "1.125rem 1.5rem"
+        : "0.875rem 1.5rem"};
     }
   `
 );
@@ -106,15 +109,14 @@ export const Button = ({
   iconSize,
   ...props
 }: ButtonProps) => {
-  const { color } = useTheme();
+  const theme = useTheme();
+  if (!theme) throw Error("theme not defined...");
+  const color = theme.color;
 
   return (
     <StyledButton
       type="button"
-      large={large}
-      clear={clear}
-      round={round}
-      withIcon={!!icon}
+      styled={{ large, clear, round, withIcon: !!icon }}
       {...props}
     >
       {icon && (

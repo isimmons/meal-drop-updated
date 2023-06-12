@@ -1,13 +1,13 @@
-import type { ComponentProps } from 'react';
-import styled, { css } from 'styled-components';
+import type { ComponentProps } from "react";
+import styled, { css } from "styled-components";
 
-import { Icon } from '~/components/Icon';
+import { Icon } from "~/components/Icon";
 
-const StyledButton = styled.button<{ small: boolean }>(
-  ({ small, theme: { borderRadius } }) => css`
+const StyledButton = styled.button<{ styled: { small: boolean } }>(
+  ({ styled, theme: { borderRadius } }) => css`
     border: 0;
-    width: ${small ? '3rem' : '4rem'};
-    height: ${small ? '3rem' : '4rem'};
+    width: ${styled.small ? "3rem" : "4rem"};
+    height: ${styled.small ? "3rem" : "4rem"};
     border-radius: ${borderRadius.round};
     cursor: pointer;
     display: flex;
@@ -27,7 +27,7 @@ type Props = {
 } & ComponentProps<typeof StyledButton>;
 
 export const IconButton = ({ small = false, name, ...props }: Props) => (
-  <StyledButton type="button" small={small} {...props}>
+  <StyledButton type="button" styled={{ small }} {...props}>
     <Icon name={name} size={small ? 15 : 24} color="#202020" />
   </StyledButton>
 );

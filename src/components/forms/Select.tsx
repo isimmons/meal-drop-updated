@@ -1,8 +1,4 @@
-import type {
-  ChangeEvent,
-  DetailedHTMLProps,
-  SelectHTMLAttributes,
-} from "react";
+import type { DetailedHTMLProps, SelectHTMLAttributes } from "react";
 import styled, { css } from "styled-components";
 
 import { Body } from "~/components/typography/Body";

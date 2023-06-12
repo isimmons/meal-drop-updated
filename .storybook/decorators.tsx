@@ -2,12 +2,15 @@ import React from "react";
 import { BrowserRouter, MemoryRouter, Routes, Route } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider as StoreProvider } from "react-redux";
+// import { initialize as mswInit, mswDecorator } from "msw-storybook-addon";
 
 import { rootReducer } from "../src/app-state";
 import { Decorator } from "@storybook/react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "../src/styles/GlobalStyle";
 import { lightTheme, darkTheme } from "../src/styles/theme";
+
+// mswInit();
 
 const withRouter: Decorator = (StoryFn, { parameters: { deepLink } }) => {
   if (!deepLink) {

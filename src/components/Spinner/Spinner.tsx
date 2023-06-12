@@ -1,4 +1,4 @@
-import styled, { useTheme } from 'styled-components';
+import styled, { useTheme } from "styled-components";
 
 const StyledSVG = styled.svg`
   width: 100px;
@@ -10,7 +10,10 @@ const StyledSVG = styled.svg`
 `;
 
 export const Spinner = () => {
-  const { color } = useTheme();
+  const theme = useTheme();
+  if (!theme) throw Error("theme not defined...");
+  const color = theme.color;
+
   return (
     <StyledSVG
       xmlns="http://www.w3.org/2000/svg"

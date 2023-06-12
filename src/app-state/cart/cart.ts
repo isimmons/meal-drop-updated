@@ -47,7 +47,6 @@ const saveItem: CaseReducer<CartState, PayloadAction<CartItem>> = (
   state,
   action
 ) => {
-  console.log("payload: ", action.payload);
   const existingCartItem = state.items.find(
     (item) => item.id === action.payload.id
   ) as CartItem;

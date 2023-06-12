@@ -1,32 +1,32 @@
-import styled, { css, useTheme, keyframes } from 'styled-components';
+import styled, { css, useTheme, keyframes } from "styled-components";
 
-import { breakpoints } from '~/styles/breakpoints';
-import { Heading } from '~/components/typography';
+import { breakpoints } from "~/styles/breakpoints";
+import { Heading } from "~/components/typography";
 
 const colors = {
   light: [
-    '#61D8DE',
-    '#4CC8C0',
-    '#36C1BF',
-    '#36C1BF',
-    '#22ACA7',
-    '#22ACA7',
-    '#B1DCE3',
+    "#61D8DE",
+    "#4CC8C0",
+    "#36C1BF",
+    "#36C1BF",
+    "#22ACA7",
+    "#22ACA7",
+    "#B1DCE3",
   ],
   dark: [
-    '#E4F7BB',
-    '#D2E29A',
-    '#DAEAAE',
-    '#DAEAAE',
-    '#C6D88B',
-    '#C6D88B',
-    '#FFFFFF',
+    "#E4F7BB",
+    "#D2E29A",
+    "#DAEAAE",
+    "#DAEAAE",
+    "#C6D88B",
+    "#C6D88B",
+    "#FFFFFF",
   ],
 };
 
 const shineColors = {
-  light: '#9FF4F1',
-  dark: '#EFFFBB',
+  light: "#9FF4F1",
+  dark: "#EFFFBB",
 };
 
 const shine = (color: string) => keyframes`
@@ -44,8 +44,10 @@ const pathStyles = (color: string, delay: number) => css`
   }
 `;
 
-const SvgContainer = styled.svg<{ large: boolean; logoOnly: boolean }>(
-  ({ large, logoOnly, theme: { name } }) => css`
+const SvgContainer = styled.svg<{
+  styled: { large: boolean; logoOnly: boolean };
+}>(
+  ({ styled, theme: { name } }) => css`
     .logo--ear-top-left {
       ${pathStyles(shineColors[name], 50)};
     }
@@ -64,10 +66,10 @@ const SvgContainer = styled.svg<{ large: boolean; logoOnly: boolean }>(
     .logo--ear-top-right {
       ${pathStyles(shineColors[name], 300)};
     }
-    padding-right: ${logoOnly ? '0' : '0.75rem'};
-    height: ${large ? '75px' : '24px'};
+    padding-right: ${styled.logoOnly ? "0" : "0.75rem"};
+    height: ${styled.large ? "75px" : "24px"};
     @media ${breakpoints.S} {
-      height: ${large ? '150px' : '24px'};
+      height: ${styled.large ? "150px" : "24px"};
     }
   `
 );
@@ -90,14 +92,15 @@ type Props = {
 };
 
 export const Logo = ({ large = false, logoOnly = false }: Props) => {
-  const themeName = useTheme().name;
+  const theme = useTheme();
+  if (!theme) throw Error("theme not defined...");
+  const themeName = theme.name;
   const fillColors = colors[themeName];
 
   return (
     <LogoContainer>
       <SvgContainer
-        large={large}
-        logoOnly={logoOnly}
+        styled={{ large, logoOnly }}
         viewBox="0 0 23 20"
         fill="none"
       >

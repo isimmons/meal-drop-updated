@@ -18,8 +18,8 @@ import { toEuro } from "~/helpers";
 import { Body } from "~/components/typography/Body";
 import { Logo } from "~/components/Logo";
 
-export const HeaderContainer = styled.div<{ sticky: boolean }>(
-  ({ sticky, theme: { color } }) => css`
+export const HeaderContainer = styled.div<{ styled: { sticky: boolean } }>(
+  ({ styled, theme: { color } }) => css`
     display: flex;
     justify-content: space-between;
     height: 56px;
@@ -37,7 +37,7 @@ export const HeaderContainer = styled.div<{ sticky: boolean }>(
     }
 
     @media ${breakpoints.M} {
-      position: ${sticky ? "sticky" : "relative"};
+      position: ${styled.sticky ? "sticky" : "relative"};
       height: 72px;
     }
   `
@@ -137,7 +137,7 @@ export const HeaderComponent = ({
     return;
   },
 }: Props) => (
-  <HeaderContainer data-testid="header" sticky={sticky}>
+  <HeaderContainer data-testid="header" styled={{ sticky }}>
     <LogoContainer to="/" aria-label="go to home page">
       <Logo />
     </LogoContainer>

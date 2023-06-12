@@ -126,7 +126,10 @@ const StyledHeading = styled(Heading)(
 );
 
 export const RestaurantCardSkeleton = () => {
-  const { color } = useTheme();
+  const theme = useTheme();
+  if (!theme) throw Error("theme not defined...");
+  const color = theme.color;
+
   return (
     <SkeletonTheme
       baseColor={color.skeletonBase}
