@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from "axios";
 
-import { Restaurant } from '~/@types';
+import { Restaurant } from "~/@types";
 
 interface BaseApi {
   getRestaurants: () => Promise<Restaurant[]>;
@@ -9,11 +9,11 @@ interface BaseApi {
 }
 
 export const BASE_URL =
-  'https://mealdrop.netlify.app/.netlify/functions/restaurants';
+  "https://mealdrop.netlify.app/.netlify/functions/restaurants";
 
-const isMockedEnvironment =
-  !!process.env.STORYBOOK || process.env.NODE_ENV === 'test';
+const env = import.meta.env;
 
+const isMockedEnvironment = !!env.STORYBOOK || env.NODE_ENV === "test";
 
 const apiCache = new Map();
 
